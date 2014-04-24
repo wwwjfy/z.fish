@@ -65,7 +65,7 @@ function z -d "maintains a jump-list of the directories you actually use"
         if [ $status -ne 0 -a -f "$datafile" ]
             env rm -f "$tempfile"
         else
-            env mv -f "$tempfile" "$datafile"; or env rm -f "$tempfile"
+            [ -f $tempfile ]; and env mv -f "$tempfile" "$datafile"; or env rm -f "$tempfile"
         end
 
     # tab completion
