@@ -69,13 +69,13 @@ function z -d "maintains a jump-list of the directories you actually use"
         end
 
     # tab completion
-    else if [ "$1" = "--complete" ]
+    else if [ "$argv[1]" = "--complete" ]
         while read line
             [ -d (string -p "^([^|]*?)\|" $line) ]; and echo $line
-        end < "$datafile" | awk -v q="$2" -F"|" '
+        end < "$datafile" | awk -v q="$argv[2]" -F"|" '
             BEGIN {
                 if( q == tolower(q) ) imatch = 1
-                split(substr(q, 3), fnd, " ")
+                split(q, fnd, " ")
             }
             {
                 if( imatch ) {
